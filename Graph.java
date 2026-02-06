@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Graph {
+class Graph { 
     int V;
     ArrayList<Integer>[] adj;
 
