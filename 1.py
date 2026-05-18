@@ -1,21 +1,34 @@
-# Undirected Graph represented as an Adjacency List
-G = {0: [1, 2], 1: [0, 3, 4], 2: [0, 4], 3: [1], 4: [1, 2]}
+g = {
+    0: [1, 2],
+    1: [0, 3, 4],
+    2: [3, 0],
+    3: [2, 1, 4],
+    4: [3, 1]
+}
 
-# Iterative BFS
-def bfs(start):
-    vis, q = {start}, [start]
+
+def dfs(g, s):
+    vis[s] = 1
+    print(s)
+    for c in g[s]:
+        if not vis[c]:
+            dfs(g, c)
+
+# vis = [0] * 5
+
+# dfs(g,0)
+
+
+def bfs(g, s):
+    q = [s]
+    vis = [s]
     while q:
-        curr = q.pop(0)
-        print(curr, end=" ")
-        q.extend([n for n in G[curr] if n not in vis and not vis.add(n)])
+        cur = q.pop(0)
+        print(cur)
+        for c in g[cur]:
+            if c not in vis:
+                q.append(c)
+                vis.append(c)
 
-# Recursive DFS 
-def dfs(curr, vis=set()):
-    if curr not in vis:
-        print(curr, end=" ")
-        vis.add(curr)
-        for n in G[curr]: dfs(n, vis)
 
-# --- Execution ---
-print("BFS:"); bfs(0)
-print("\nDFS:"); dfs(0)
+bfs(g, 0)
